@@ -1,0 +1,21 @@
+.datacard{
+    font-size: 12px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid teal;
+    background-color: red;
+}
+
+.datacard{
+    width: calc(19% - 10px); /* divide the total width by 5 and subtract 10px for margin */
+    height: 200px;
+    border: 1px solid teal;
+    background-color: red;
+    float: left; /* add this line */
+    margin: 5px; /* add a 5px margin between cards */
+}
+
+// .row { /* add this class */
+//   display: flex; /* change display to flex */
+//   flex-wrap: wrap; /* wrap the content in multiple rows if needed */
+// }

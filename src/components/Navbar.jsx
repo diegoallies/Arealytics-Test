@@ -1,31 +1,44 @@
-import React from 'react'
-import logo from "../images/logo.png"
-import { Link } from 'react-router-dom'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import Logo from "../img/logo.png";
 
+const Navbar = () => {
+  const userData = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
 
-export const Navbar = () => {
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT_USER" });
+  };
+
   return (
-    <div className='navbar'>
-        <div className='container'>
-            <div className='logo'>
-                <img src={logo} alt="" />
-            </div>
-            <div className='links'>
-                <Link className="link" to="/?cat=art"> <h5>  Most Recent </h5></Link>>
-                <Link className="link" to="/?cat=art"> <h5>  Oldest first</h5></Link>>
-                <Link className="link" to="/?cat=art"> <h5>  Random </h5></Link>>
-                <span>John</span>
-                <span>Logout</span>
-                <span className='write'>
-                    <Link className="link" to="/write"> Post </Link>
-                </span>
-                
-                
-
-            </div>
-
-
+    <div className="navbar">
+      <div className="container">
+        <div className="logo">
+          <Link to="/">
+            <img src={Logo} alt="" />
+          </Link>
         </div>
+        <div className="links">
+          {userData.username && (
+            <span>{userData.username}</span>
+          )}
+          {userData.username ? (
+            <span onClick={handleLogout}>Logout</span>
+          ) : (
+            <Link className="link" to="/login">
+              Login
+            </Link>
+          )}
+          <span className="write">
+            <Link className="link" to="/write">
+              Write
+            </Link>
+          </span>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default Navbar;

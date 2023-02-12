@@ -1,44 +1,83 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
 
-export const Register = () => {
-  return (
-    <div className="auth">
-    <h1>Register</h1>
-    <form>
-    <div className='box'>
-     <div className='registerForm'>
-        <div className='testOne'>
-            <input type="text" placeholder='username'/>
-            <input required type="password" placeholder='password'/>
-            <input requiredtype="text" placeholder='first name'/>
-            <input required type="text" placeholder='last name'/>
-        </div>
-        <div className='testTwo'>
-            <input requiredtype="text" placeholder='gender'/>
-            <input requiredtype="text" placeholder='location'/>
-            <input requiredtype="text" placeholder='occupation'/>
-            <input requiredtype="text" placeholder='gender'/>
-        </div>
-        </div>
+const Register = () => {
+  const [fullname, setFullname] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-        <div className='btnSide'>
-            <button className='BTN'>Register</button>
-            
-            <p>This is an error!</p>
-            
-            <span>Already have a account? <Link to="/login">Login</Link></span>
-        </div>
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch("http://localhost:3000/users/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullname,
+        phone_number,
+        email,
+        password,
+        
+      }),
       
-    </div>
-       
-        
-        
-        
+    });
+    console.log(fullname)
 
 
-        
+    
+
+    if (response.ok) {
+      const data = await response.json();
+      
+      // Store the logged in data in the store
+      // ...
+      // Log the user in
+      // ...
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="fullname">Full Name:</label>
+        <input
+          type="text"
+          id="fullname"
+          value={fullname}
+          onChange={(event) => setFullname(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="phoneNumber">Phone Number:</label>
+        <input
+          type="text"
+          id="phoneNumber"
+          value={phone_number}
+          onChange={(event) => setPhoneNumber(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </div>
+      <button type="submit">Register</button>
     </form>
-    </div>
-  )
-}
+  );
+};
+
+export default Register;

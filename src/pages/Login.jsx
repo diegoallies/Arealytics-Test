@@ -1,23 +1,55 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-export const Login = () => {
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    try {
+      const response = await axios.post('http://localhost:3000/users/signin', {
+        username,
+        password
+      });
+
+      // Store the user data in the local storage
+      localStorage.setItem('userData', JSON.stringify(response.data));
+
+      dispatch({ type: 'SET_USER_DATA', payload: response.data });
+  
+      // Redirect to root route
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="auth">
-        <h1>Login</h1>
-        <div className='logBox'>
-            <form>
-            <div className='loginPage'>
-                <input required type="text" placeholder='username'/>
-                <input required type="text" placeholder='password'/>
-                <button className='LBTN'>Login</button>
-                <p>This is an error!</p>
-                <span>Dont you have a account? <Link to="/register">Register</Link></span>
-            </div>
-            
-        </form>
-        </div>
-        
-        </div>
-  )
-}
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
