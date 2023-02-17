@@ -1,21 +1,113 @@
-.datacard{
-    font-size: 12px;
+// .datacard-container {
+//     max-width: calc(19% - 10px); /* divide the total width by 5 and subtract 10px for margin */
+//     height: 310px; /* adjust height as per your requirement */
+//     border: 1px solid teal;
+//     background-color: whitesmoke;
+//     float: left; /* add this line */
+//     margin: 5px; /* add a 5px margin between cards */
+//   }
+  
+//   .datacard {
+//   width: 167px;
+//   height: 140px;
+//   background-color: white;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   padding: 16px;
+//   text-align: center;
+//   font-size: 10px;
+//   }
+  
+//   .datacard-top {
+//     width: 100%;
+//     height: 150px;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     border-top-left-radius: 8px;
+//     border-top-right-radius: 8px;
+
+
+//     img {
+//         max-width: 160px;
+//         max-height: 160px;
+//         background-repeat: no-repeat;
+//     }
+//   }
+
+//   li {
+//     list-style-type: none;
+//     margin: 8px 0;
+//     overflow: hidden;
+//   }
+
+
+.UserDetails {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .UserDetails-top {
+    width: 50%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .UserDetails-bottom {
+    width: 50%;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .UserDetails-bottom li {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  
+  .Feed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .datacard-container {
     width: 200px;
     height: 200px;
-    border: 1px solid teal;
-    background-color: red;
-}
-
-.datacard{
-    width: calc(19% - 10px); /* divide the total width by 5 and subtract 10px for margin */
-    height: 200px;
-    border: 1px solid teal;
-    background-color: red;
-    float: left; /* add this line */
-    margin: 5px; /* add a 5px margin between cards */
-}
-
-// .row { /* add this class */
-//   display: flex; /* change display to flex */
-//   flex-wrap: wrap; /* wrap the content in multiple rows if needed */
-// }
+    margin: 20px;
+    cursor: pointer;
+  }
+  
+  .datacard {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  
+  .datacard-top {
+    width: 100%;
+    height: 70%;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .bacl {
+    margin-right: -1;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: #555;
+    }
+  }

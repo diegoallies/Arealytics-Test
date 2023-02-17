@@ -5,6 +5,7 @@ $lightGreen: #b9e7e7;
   justify-content: center;
   .container {
     width: 1100px;
+    margin-bottom: 60px;
 
     .link {
       text-decoration: none;
@@ -66,6 +67,7 @@ $lightGreen: #b9e7e7;
     .navbar {
       .container {
         padding: 10px 0px;
+        // margin-bottom: -2000px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -90,8 +92,8 @@ $lightGreen: #b9e7e7;
 
           .write {
             background-color: $lightGreen;
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -118,10 +120,11 @@ $lightGreen: #b9e7e7;
       position: fixed;
 
     }
-    .Feed{
-      margin-bottom: 2000px;
-    }
+    // .Feed{
+    //   margin-bottom: 2000px;
+    // }
     footer {
+      width: 85.9% !important;
       margin-bottom: 0;
       margin-top: 200px;
       padding: 20px;
@@ -132,8 +135,10 @@ $lightGreen: #b9e7e7;
       font-size: 12px;
 
       position: fixed;
-      bottom: 0;
+      bottom: -1%;
       display: block;
+
+      border: 1px solid teal;
 
       // position: absolute; /* add this line */
       // bottom: 0; /* add this line */
@@ -177,7 +182,7 @@ $lightGreen: #b9e7e7;
 
             img {
               width: 100%;
-              max-height: 400px;
+              max-height: 300px;
               object-fit: cover;
             }
           }
@@ -403,3 +408,37 @@ $lightGreen: #b9e7e7;
     }
   }
 }
+
+.NAME{
+  justify-content: center;
+  text-align: center;
+}
+
+.home {
+  .posts {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .post {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }}}
+
+      .app {
+        display: flex;
+        justify-content: center;
+      
+        .container {
+          width: 1200px;
+          margin-bottom: 60px;
+      
+          .link {
+            text-decoration: none;
+            color: inherit;
+          }
+        }}

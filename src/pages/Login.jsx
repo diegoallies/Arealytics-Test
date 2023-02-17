@@ -1,39 +1,43 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-  
     try {
-      const response = await axios.post('http://localhost:3000/users/signin', {
-        username,
-        password
+      const response = await fetch('http://localhost:3000/users/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
       });
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
 
-      // Store the user data in the local storage
-      localStorage.setItem('userData', JSON.stringify(response.data));
+      const userData = await response.json();
 
-      dispatch({ type: 'SET_USER_DATA', payload: response.data });
-  
+      // Save the user data to local storage
+      localStorage.setItem('userData', JSON.stringify(userData));
+
       // Redirect to root route
       navigate("/");
     } catch (error) {
-      console.error(error);
+      setErrorMessage(error.message);
     }
   };
 
   return (
     <div className="auth">
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      {errorMessage && <div>{errorMessage}</div>}
+      <form onSubmit={handleLogin}>
         <input
           type="text"
           placeholder="Username"
